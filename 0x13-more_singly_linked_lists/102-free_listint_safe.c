@@ -1,0 +1,26 @@
+#include "lists.h"
+/**
+ * free_listint_safe - this free a list and set the head to null
+ * @h: the pointer to head of linked list
+ * Return: size of the list
+ */
+size_t free_listint_safe(listint_t **h)
+{
+	listint_t *current, *hold;
+	size_t count;
+
+	count = 0;
+	current = *h;
+	while (current != NULL)
+	{
+		count++;
+		hold = current;
+		current = current->next;
+		free(hold);
+		if (hold < current)
+			break;
+	}
+	*h = NULL;
+
+	return (count);
+}
